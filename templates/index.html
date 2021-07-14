@@ -1,0 +1,306 @@
+﻿{% extends "header.html" %} {% block fixed_head %} {{ super() }} {% endblock %} {% block fixed_body %} {{ super() }} {% endblock %} {% block main_content %}
+
+<main role="main">
+    <div class="em-l-container">
+        <div class="em-c-page-header ">
+            <h2 class="em-c-section__title ">NetApp Node Day 0 Automation</h2>
+            Please provide the NetApp Node Day 0 Setting
+
+            <!-- insert a horizontal line -->
+            <header class="em-c-section__header ">
+                <h2 class="em-c-section__title ">
+
+                </h2>
+            </header>
+
+            <div class="em-c-section__body">
+                <form name="ansiblelaunch" action="/ansiblelaunch" method="post">
+                    <table style="width: 60%;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="em-c-field ">
+                                        <label> Customer: </label></td>
+                                <td>
+                                    <input id="customer" name="customer" readonly="readonly" value="{{ user_name }}" required style="width: 100%;"> </td>
+                            </tr>
+
+                            <tr>
+                                <td> <label> Email: </label></td>
+                                <td>
+                                    <input id="email" name="email" readonly="readonly" value="{{ email }}" required> </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="em-c-section__body">
+                                        <div class="em-c-field ">
+                                            <!-- <h4 for="" class="em-c-field__label">Request Type</h4> -->
+                                            <div class="em-c-field__body">
+                                                <ul class="em-c-option-list ">
+                                                    <tr>
+                                                        <td> <label> Select Operation: </label></td>
+                                                        <td>
+                                                            <select class="em-c-select operation" id="operation" name="operation">                    
+                                                    <option value=""> --Please select--&nbsp; </option>
+                                                    <option value="endtoend" > End to End &nbsp; </option>
+                                                    <option value="CIFS" > Single CIFS SVM&nbsp; </option>
+                                                    <option value="NFS" > Single NFS SVM&nbsp; </option>
+                                                    
+                                               </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Cluster Hostname: </label></td>
+                                        <td> <input id="cluster_name" name="cluster_name" type="text " placeholder="e.g. HCFNCS301 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Node A Name: </label></td>
+                                        <td> <input id="nodea_name" name="nodea_name" type="text " placeholder="e.g. HCFNCS301-03 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Node B Name: </label></td>
+                                        <td> <input id="nodeb_name" name="nodeb_name" type="text " placeholder="e.g. HCFNCS301-04 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> VLAN number: </label></td>
+                                        <td> <input id="vlan_number" name="vlan_number" type="text " placeholder="e.g. 201 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 1: </label></td>
+                                        <td> <input id="porta" name="porta" type="text " placeholder="e.g. e0c " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 2: </label></td>
+                                        <td> <input id="portb" name="portb" type="text " placeholder="e.g. e0d " required> </td>
+                                    </tr>
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 3: </label></td>
+                                        <td> <input id="portc" name="portc" type="text " placeholder="e.g. e0e " required> </td>
+                                    </tr>
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 4: </label></td>
+                                        <td> <input id="portd" name="portd" type="text " placeholder="e.g. e0f " required> </td>
+                                    </tr>
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 5: </label></td>
+                                        <td> <input id="porte" name="porte" type="text " placeholder="e.g. optional "> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 6: </label></td>
+                                        <td> <input id="portf" name="portf" type="text " placeholder="e.g. optional "> </td>
+                                    </tr>
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 7: </label></td>
+                                        <td> <input id="portg" name="portg" type="text " placeholder="e.g. optional "> </td>
+                                    </tr>
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> IFGRP Port 8: </label></td>
+                                        <td> <input id="porth" name="porth" type="text " placeholder="e.g. optional "> </td>
+                                    </tr>
+
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Node A Management LIF IP Address: </label></td>
+                                        <td> <input id="lifa_address" name="lifa_address" type="text " placeholder="e.g. 10.128.70.52 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Node B Management LIF IP Address: </label></td>
+                                        <td> <input id="lifb_address" name="lifb_address" type="text " placeholder="e.g. 10.128.70.52 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Node Management Netmask: </label></td>
+                                        <td> <input id="lif_netmask" name="lif_netmask" type="text " placeholder="e.g. 255.255.254.0 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Node Failover Group: </label></td>
+                                        <td> <input id="failover_group" name="failover_group" type="text " placeholder="e.g. 10.128.70.0/23 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Node A Intercluster LIF IP Address: </label></td>
+                                        <td> <input id="lif_icla_address" name="lif_icla_address" type="text " placeholder="e.g. 10.128.70.54 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Node B Intercluster LIF IP Address: </label></td>
+                                        <td> <input id="lif_iclb_address" name="lif_iclb_address" type="text " placeholder="e.g. 10.128.70.55 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Intercluster VLAN number: </label></td>
+                                        <td> <input id="vlanicl_number" name="vlanicl_number" type="text " placeholder="e.g. 201 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Intercluster Netmask: </label></td>
+                                        <td> <input id="lificl_netmask" name="lificl_netmask" type="text " placeholder="e.g. 255.255.254.0 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Intercluster Failover Group: </label></td>
+                                        <td> <input id="failovericl_group" name="failovericl_group" type="text " placeholder="e.g. 10.128.70.0/23 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="CIFS">
+                                        <td> <label> CIFS/ NFS SVM name: </label></td>
+                                        <td> <input id="svm1_name" name="svm1_name" type="text " placeholder="e.g. hcfncs301c01 " required> </td>
+                                    </tr>
+
+                                    <!-- <tr style="display: None;" class="NFS">
+                            <td>
+                                <div class="em-c-field ">
+                                    <label> NFS SVM name: </label></td>
+                            <td> <input id="svm1_name" name="svm1_name" type="text " placeholder=" NFS SVM Name " required> </td>
+                        </tr> -->
+
+                                    <tr style="display: None;" class="CIFS">
+                                        <td> <label> Node A Data LIF IP Address: </label></td>
+                                        <td> <input id="lif_svm1a_address" name="lif_svm1a_address" type="text " placeholder="e.g. 10.128.70.96 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="CIFS">
+                                        <td> <label> Node B Data LIF IP Address: </label></td>
+                                        <td> <input id="lif_svm1b_address" name="lif_svm1b_address" type="text " placeholder="e.g. 10.128.70.98 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Disk Type: </label></td>
+                                        <td> <input id="diska_type" name="diska_type" type="text " placeholder="e.g. FSAS " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Number of disks on Node A: </label></td>
+                                        <td> <input id="diska_count" name="diska_count" type="text " placeholder="e.g. 14 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="end">
+                                        <td> <label> Number of disks on Node B: </label></td>
+                                        <td> <input id="diskb_count" name="diskb_count" type="text " placeholder="e.g. 14 " required> </td>
+                                    </tr>
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Node A Aggregate Name: </label></td>
+                                        <td> <input id="aggregatea_name" name="aggregatea_name" type="text " placeholder="e.g. hcfncs301_03_sata_7K_4TB_agg001 " required> </td>
+                                    </tr>
+
+
+                                    <tr style="display: None;" class="SVM">
+                                        <td> <label> Node B Aggregate Name: </label></td>
+                                        <td> <input id="aggregateb_name" name="aggregateb_name" type="text " placeholder="e.g. hcfncs301_04_sata_7K_4TB_agg001 " required> </td>
+                                    </tr>
+
+                        </tbody>
+                    </table>
+                    <br>
+                    <button id='ansiblelaunch' name='ansiblelaunch' type="submit " class="em-c-btn em-c-btn--primary ">
+    <span class="em-c-btn__text ">Submit Request</span>
+  </button>
+                </form>
+
+                <!-- <tr>
+                        <td>
+                            <button style="display: None;" id='ansiblelaunch' name='ansiblelaunch' type="submit " class="em-c-btn em-c-btn--primary all">
+                            <span class="em-c-btn__text ">Submit Request</span>
+                        </button>
+                        </td>
+                    </tr> -->
+                <script type="text/javascript" src="/static/unity-1.5.0/js/jquery-3.1.1.js"></script>
+                <script type="text/javascript" src="/static/unity-1.5.0/js/jquery-ui.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $("select").change(function() {
+                            $(this).find("option:selected").each(function() {
+                                var optionValue = $(this).attr("value");
+                                if (optionValue == "endtoend") {
+                                    $(".end").show();
+                                    $(".SVM").show();
+                                    $(".all").show();
+                                    $(".CIFS").hide();
+                                    $(".NFS").hide();
+                                    console.log("show")
+                                    $('#lif_svm1a_address').removeAttr('required');
+                                    $('#lif_svm1b_address').removeAttr('required');
+                                    $('#svm1_name').removeAttr('required');
+
+                                } else if (optionValue == "CIFS") {
+                                    $(".end").hide();
+                                    $(".CIFS").show();
+                                    $(".SVM").show();
+                                    $(".all").show();
+                                    $('#lifa_address').removeAttr('required');
+                                    $('#lifb_address').removeAttr('required');
+                                    $('#lif_icla_address').removeAttr('required');
+                                    $('#lif_iclb_address').removeAttr('required');
+                                    $('#diska_type').removeAttr('required');
+                                    $('#diska_count').removeAttr('required');
+                                    $('#diskb_count').removeAttr('required');
+                                    $('#porta').removeAttr('required');
+                                    $('#portb').removeAttr('required');
+                                    $('#portc').removeAttr('required');
+                                    $('#portd').removeAttr('required');
+                                    $('#vlanicl_number').removeAttr('required');
+                                    $('#lificl_netmask').removeAttr('required');
+                                    $('#failovericl_group').removeAttr('required');
+
+                                } else if (optionValue == "NFS") {
+                                    $(".end").hide();
+                                    $(".CIFS").show();
+                                    $(".SVM").show();
+                                    $(".all").show();
+                                    $('#lifa_address').removeAttr('required');
+                                    $('#lifb_address').removeAttr('required');
+                                    $('#lif_icla_address').removeAttr('required');
+                                    $('#lif_iclb_address').removeAttr('required');
+                                    $('#diska_type').removeAttr('required');
+                                    $('#diska_count').removeAttr('required');
+                                    $('#diskb_count').removeAttr('required');
+                                    $('#porta').removeAttr('required');
+                                    $('#portb').removeAttr('required');
+                                    $('#portc').removeAttr('required');
+                                    $('#portd').removeAttr('required');
+                                    $('#vlanicl_number').removeAttr('required');
+                                    $('#lificl_netmask').removeAttr('required');
+                                    $('#failovericl_group').removeAttr('required');
+                                }
+                            });
+                        }).change();
+                    });
+                </script>
+                <!-- <tr>
+                        <td>
+                            <button style="display: None;" id='ansiblelaunch' name='ansiblelaunch' type="submit " class="em-c-btn em-c-btn--primary all">
+                                                            <span class="em-c-btn__text ">Submit Request</span>
+                                                        </button>
+                        </td>
+                    </tr>
+
+                </form> -->
+
+                <!-- </tbody> -->
+                <!-- </table>
+                    <br>
+                    <button id='ansiblelaunch' name='ansiblelaunch' type="submit " class="em-c-btn em-c-btn--primary ">
+    <span class="em-c-btn__text ">Submit Request</span>
+  </button> -->
+                </div>
+                <!-- end em-c-section__body -->
+
+            </div>
+        </div>
+</main>
+<!-- end main-->
+{% endblock %} {% block fixed_footer %} {{ super() }} {% endblock %}
